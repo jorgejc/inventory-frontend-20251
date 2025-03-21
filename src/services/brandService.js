@@ -2,23 +2,23 @@ import { axiosInstance } from '../helper/axios-config';
 
 const getBrands = () => {
     return axiosInstance.get('brand', {
-        headers: {
+        header: {
             'Content-type': 'application/json'
         }
     });
 }
 
 const createBrand = (data) => {
-    return axiosInstance.get('brand', data, {
-        headers: {
+    return axiosInstance.post('brand', data, {
+        header: {
             'Content-type': 'application/json'
         }
     });
 }
 
 const updateBrand = (brandId, data) => {
-    return axiosInstance.get(`brand/${brandId}`, data, {
-        headers: {
+    return axiosInstance.put(`brand/${brandId}`, data, {
+        header: {
             'Content-type': 'application/json'
         }
     });

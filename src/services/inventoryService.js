@@ -2,23 +2,23 @@ import { axiosInstance } from '../helper/axios-config';
 
 const getInventories = () => {
     return axiosInstance.get('inventory', {
-        headers: {
+        header: {
             'Content-type': 'application/json'
         }
     });
 }
 
 const createInventory = (data) => {
-    return axiosInstance.get('inventory', data, {
-        headers: {
+    return axiosInstance.post('inventory', data, {
+        header: {
             'Content-type': 'application/json'
         }
     });
 }
 
 const updateInventory = (inventoryId, data) => {
-    return axiosInstance.get(`inventory/${inventoryId}`, data, {
-        headers: {
+    return axiosInstance.put(`inventory/${inventoryId}`, data, {
+        header: {
             'Content-type': 'application/json'
         }
     });
