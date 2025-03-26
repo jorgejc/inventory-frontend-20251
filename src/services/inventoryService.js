@@ -24,6 +24,14 @@ const updateInventory = (inventoryId, data) => {
     });
 }
 
+const getInventoryForId = (inventoryId) => {
+    return axiosInstance.get(`inventory/${inventoryId}`,  {
+        header: {
+            'Content-type': 'application/json'
+        }
+    });
+}
+
 export {
-    getInventories, createInventory, updateInventory
+    getInventories, createInventory, updateInventory, getInventoryForId
 }

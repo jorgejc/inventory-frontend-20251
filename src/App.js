@@ -6,6 +6,7 @@ import { InventoryView } from './components/inventory/InventoryView'
 import { EquipmentTypeView } from './components/type/EquipmentTypeView'
 import { EquipmentStateView } from './components/states/EquipmentStateView'
 import { UserView } from './components/users/UserView'
+import { InventoryUpdate } from "./components/inventory/InventoryUpdate";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route exact path='/brands' component={BrandView} />
       <Route exact path='/states' component={EquipmentStateView} />
       <Route exact path='/types' component={EquipmentTypeView} />
+      <Route exact path='/inventories/edit/:inventoryId' component={ InventoryUpdate } />
       <Redirect to='/' />
     </Switch>
 </Router>
