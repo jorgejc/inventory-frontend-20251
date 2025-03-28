@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { getInventories } from '../../services/inventoryService';
 import { InventoryCard } from '../inventory/InventoryCard';
 import { InventoryNew } from './InventoryNew';
+import Swal from 'sweetalert2';
 
 export const InventoryView = () => {
 
@@ -11,15 +12,19 @@ const [ openModal, setOpenModal ] = useState(false);
 const listInventories = async () => {
 
   try {
-
+    Swal.fire({
+      allowOutsideClick: false,
+      text: 'Cargando...'
+    });
+    Swal.showLoading();
     const { data } = await getInventories();
-    console.log(data);
+    Swal.close();
     setInventories(data);
     
 
   } catch(error) {
     console.log(error);
-    
+    Swal.close();
   }
 }
 
