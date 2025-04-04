@@ -37,14 +37,29 @@ export const BrandView = () => {
 
   const handleCreateBrand = async (e) => {
     e.preventDefault();
+
+      // Validación adicional en el frontend
+  if (!name.trim()) {
+    Swal.fire('Error', 'El nombre es obligatorio', 'error');
+    return;
+  }
+
+  if (!['Activo', 'Inactivo'].includes(state)) {
+    Swal.fire('Error', 'El estado es obligatorio y debe ser Activo o Inactivo', 'error');
+    return;
+  }
+
     try {
       Swal.fire({
         allowOutsideClick: false,
         text: 'Cargado...'
       });
       Swal.showLoading();
+
       if (brandSelect) {
         await updateBrand(valuesForm, brandSelect);
+        console.log(valuesForm, brandSelect);
+        
         setBrandSelect(null);
       } else {
         await createBrand(valuesForm);
@@ -56,13 +71,15 @@ export const BrandView = () => {
       console.log(error);
       Swal.close();
     }
-  }
+  };
 
   const handleUpdateBrand = async (e, brand) => {
     e.preventDefault();
+    console.log('Datos del registro seleccionado:', brand);
+    console.log('Cargando valores del registro:', { name: brand.name, state: brand.state });
     setValuesForm({ name: brand.name, state: brand.state});
     setBrandSelect(brand._id);
-  }
+  };
 
   return (
     <div className='container-fluid mt-4'>
@@ -103,12 +120,12 @@ export const BrandView = () => {
         <tbody>
           {
             brands.length > 0 && brands.map((brand, index) => {
-              return <tr>
-                <th scope='row'> {index + 1} </th>
-                <td> {brand.name} </td>
-                <td> {brand.state} </td>
-                <td> {moment(brand.createdAt).format('DD-MM-YYYY HH:mm')} </td>
-                <td> {moment(brand.updatedAt).format('DD-MM-YYYY HH:mm')} </td>
+              return <tr key={brand._id}>
+                <th scope='row'> {index + 1}</th>
+                <td>{brand.name}</td>
+                <td>{brand.state}</td>
+                <td>{moment(brand.createdAt).format('DD-MM-YYYY HH:mm')}</td>
+                <td>{moment(brand.updatedAt).format('DD-MM-YYYY HH:mm')}</td>
                 <td><button className='btn btn-success btn-sm me-2' onClick={(e) => handleUpdateBrand(e, brand)}>Actualizar</button>
                   <button className='btn btn-danger btn-sm'>Eliminar</button>
                 </td>

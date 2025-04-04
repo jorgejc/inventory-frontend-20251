@@ -3,7 +3,7 @@ import { axiosInstance } from '../helper/axios-config';
 const getBrands = () => {
     return axiosInstance.get('brand', {
         header: {
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
         }
     });
 }
@@ -11,7 +11,7 @@ const getBrands = () => {
 const createBrand = (data) => {
     return axiosInstance.post('brand', data, {
         header: {
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
         }
     });
 }
@@ -19,7 +19,7 @@ const createBrand = (data) => {
 const updateBrand = (brandId, data) => {
     return axiosInstance.put(`brand/${brandId}`, data, {
         header: {
-            'Content-type': 'application/json'
+            'Content-Type': 'application/json'
         }
     });
 }
